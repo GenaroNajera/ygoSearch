@@ -1,3 +1,7 @@
+body {
+  background-attachment: fixed;
+}
+
 .App {
   text-align: center;
   margin: 0;
@@ -10,5 +14,85 @@ input {
 }
 
 img {
-  height: 20em;
+  height: 27em;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container2 td {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+table tr {
+  border-bottom: 2px solid black;
+}
+
+table {
+  border: 2px solid black;
+  border-collapse: collapse;
+  width: 40%;
+  height: 10%;
+  background-color: white;
+}
+
+#effect {
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+#name {
+  font-variant: small-caps;
+}
+
+tr:nth-child(odd) {
+  background-color: darkgrey;
+}
+
+.normal {
+  background-color: #c3974f;
+}
+
+.effect {
+  background-color: #b96334;
+}
+
+.ritual {
+  background-color: #456cb7;
+}
+
+.fusion {
+  background-color: #823c93;
+}
+
+.synchro, .error {
+  background-color: #fff;
+}
+
+.xyz {
+  background-color: #000;
+}
+
+.pendulum {
+  background-image: linear-gradient(to bottom, #fff0 40%, #048974 80% );
+}
+
+.link {
+  background-color: #07467f;
+}
+
+.spell {
+  background-color: #048974;
+}
+
+.trap {
+  background-color: #a4166e;
 }

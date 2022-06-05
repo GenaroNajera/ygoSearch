@@ -6,17 +6,20 @@ function App() {
   const [search, setSearch] = useState('blue-eyes white dragon');
   const [info, setInfo] = useState({});
   const [image, setImage] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState(false);
+  const [err, setErr] = useState(true);
 
   useEffect(() => {
     fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${search}`)
-    .then(response => response.json())
-    .then(data => {
-      setLoading(false);
-      setImage(data.data[0].card_images[0].image_url);
-      setInfo(data.data[0]);
-    });
+      .then(res => res.json())
+      .then(data => {
+        if(data.data) {
+          setImage(data.data[0].card_images[0].image_url);
+          setInfo(data.data[0]);
+          setErr(false);
+        } else {
+          setErr(true);
+        }
+      });
   },[]);
   
   function handleFormSubmit(e) {
@@ -25,9 +28,9 @@ function App() {
       .then(res => res.json())
       .then(data => {
         if(data.data) {
-          setErr(false);
           setImage(data.data[0].card_images[0].image_url);
           setInfo(data.data[0]);
+          setErr(false);
         } else {
           setErr(true);
         }
@@ -37,10 +40,11 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleFormSubmit}>
-        <input type='text' value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <input type='text' placeholder='Enter Card Name' value={search} onChange={(e) => setSearch(e.target.value)} required/>
         <input type='submit' value='Search' />
       </form>
-      {loading ? <h1>loading...</h1> : <Result image={image} search={search} info={info} err={err}/>}
+
+      <Result image={image} info={info} err={err}/>
     </div>
   );
 }
